@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #circle{
+        width: 400px;
+        height: 400px;
+        background-color:black;
+        border: 1px solid black;
+       border-radius: 50%;
+    }
+    </style>
+<body>
+    <h1>random</h1>
+    <div id="circle"></div>
+    <button id="randBtn" onclick="randomColor()">Change Color</button>
+    <script>
+        var counter=0;
+            var digits="0123456789ABCDEF";
+            function returnColor()
+            {
+                low=0;
+                high=15;
+                color='#';
+                for(i=0;i<6;i++)
+                {
+                    color=color+digits[Math.floor(Math.random()*(high+1-low)) +low];
+                }
+                return color;
+            }
+            function randomColor(){
+               var ele=document.getElementById('circle');
+                color=returnColor();
+                ele.style.backgroundColor = color;
+               
+            }
+    </script>
+</body>
+</html>
