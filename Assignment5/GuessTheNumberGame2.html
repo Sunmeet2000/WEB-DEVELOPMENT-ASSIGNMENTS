@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Number guessing game</title>
+
+    <style>
+      html {
+        font-family: sans-serif;
+      }
+      body {
+        width: 50%;
+        max-width: 800px;
+        min-width: 480px;
+        margin: 0 auto;
+      }
+      .lastResult {
+        color: white;
+        padding: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Number guessing game</h1>
+
+    <p>We have selected a random number between 1 and 100. See if you can guess it in 10 turns or fewer. We'll tell you if your guess was too high or too low.</p>
+
+    <div class="form">
+      <label for="guessField">Enter a guess: </label>
+      <input type = "text" id = "guessField" class = "guessField">
+      <input type = "submit" value = "Submit Guess" class = "guessSubmit" id = "guessSubmit">
+    </div>
+    <div class="resultParas">
+        <p id="guesses"></p>
+        <p id="lastResult"></p>
+        <p id="lowOrHi"></p>
+    </div>
+    <div id="form1">
+
+    </div>
+    <script type = "text/javascript">
+      // Your JavaScript goes here
+      var z=1;
+      var a=1;
+      var low = 1;
+      var high = 100;
+      var nguess = [];
+      var i=0;
+      var y = low + Math.floor(Math.random()*(high+1-low));
+      var guess = 1;
+      alert(y);
+      document.getElementById("guessSubmit").onclick = function()
+      {
+        var x = document.getElementById("guessField").value;
+        if(i > 9 || z > 1)
+        {
+             if(i > 9)
+             {
+              var str = nguess.toString();
+              document.getElementById("guesses").innerText = "Previous Guessess: " + str;
+              document.getElementById("lastResult").innerText = "Wrong! Game is over!";
+              document.getElementById("lastResult").style.fontWeight = "600";
+              document.getElementById("lastResult").style.color = "white";
+              document.getElementById("lastResult").style.backgroundColor = "orange";
+              document.getElementById("lastResult").style.padding = "6px";
+              document.getElementById("lowOrHi").innerText = "";
+             }
+             if(a == 1)
+             {
+               overguess();
+               a++;
+             }
+        }
+        else{ 
+                if(x == y)
+                   z++;
+                nguess[i++]=x;
+    
+       if(x == y)
+       {    
+           var str = nguess.toString();
+           document.getElementById("guesses").innerText = "Previous Guessess: " + str;
+           document.getElementById("lastResult").innerText = "CONGRATULATIONS! You got it right in " + guess + " guess!";
+           document.getElementById("lastResult").style.fontWeight = "600";
+           document.getElementById("lastResult").style.color = "white";
+           document.getElementById("lastResult").style.backgroundColor = "green";
+           document.getElementById("lastResult").style.padding = "6px";
+           if(a == 1)
+             {
+               overguess();
+               a++;
+             }
+           document.getElementById("lowOrHi").innerText = "";
+       }
+       else if(x > y)                
+       {     
+             guess++; 
+             var str = nguess.toString();
+             document.getElementById("guesses").innerText = "Previous Guessess: " + str;
+             document.getElementById("lastResult").innerText = "Wrong!";
+             document.getElementById("lastResult").style.fontWeight = "600";
+             document.getElementById("lastResult").style.color = "white";
+             document.getElementById("lastResult").style.backgroundColor = "red";
+             document.getElementById("lastResult").style.padding = "6px";
+             document.getElementById("lowOrHi").innerText = "Last guess was too high!";
+             if(guess == 11)
+             {
+              if(a == 1)
+                {
+                 overguess();
+                 a++;
+               } 
+             }
+       }
+       else
+       {
+           guess++;
+             var str = nguess.toString();
+             document.getElementById("guesses").innerText = "Previous Guessess: " + str;
+             document.getElementById("lastResult").innerText = "Wrong!";
+             document.getElementById("lastResult").style.fontWeight = "600";
+             document.getElementById("lastResult").style.color = "white";
+             document.getElementById("lastResult").style.backgroundColor = "red";
+             document.getElementById("lastResult").style.padding = "6px";
+             document.getElementById("lowOrHi").innerText = "Last guess was too low!";
+             if(guess == 11)
+            {
+              if(a == 1)
+              {
+                overguess();
+                a++;
+              }
+            }
+       }
+    }
+    function overguess()
+    {
+      var x = document.createElement("INPUT");
+      x.setAttribute("type", "submit");
+      x.setAttribute("value", "Start New Game");
+      x.setAttribute("id" , "StartNewGame");
+      document.getElementById("form1").appendChild(x);
+        x.onclick = function()
+         {location.reload();}
+    }
+  }
+    </script>
+  </body>
+</html>
